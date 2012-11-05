@@ -139,7 +139,7 @@ class ReviewsController extends AppController {
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Review->save($this->request->data)) {
 				$this->Review->updateAll(
-					array('Review.status '=>"'completed'"),
+					array('Review.status '=>"'completed'",'Review.published'=>1),
 					array('Review.id'=>$id)
 				);
 				$this->Session->setFlash(__('The review has been updated'));
