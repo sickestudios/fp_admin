@@ -9,7 +9,9 @@
 		</div>
 		<div class="span9 offset1">
 			<div class="row">
-				<div class="span5"><?php echo $this->Form->input('title',array('class'=>'span5')); ?></div>							
+				<div class="span5">
+					<?php echo $this->Form->input('title',array('class'=>'span5')); ?>
+				</div>							
 				<div class="span1">
 					<?php echo $this->Form->input('score',
 						array(

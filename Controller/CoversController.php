@@ -18,17 +18,23 @@ class CoversController extends AppController {
 			$this->paginate = array(
     	    	'order' => array('Cover.created'=>'desc'),
 				'conditions' => array('Cover.language_id = '.$language.' OR Cover.language_id = 1'),
+			
     		);
     		$this->loadModel('Review');
     		$this->Review->recursive = 0;
     		$arr_review = $this->Review->find('list',array('fields'=>array('Review.title','Review.status','Review.cover_id'),'conditions'=>array('Review.language_id'=>$language)));
     		$arr_review_code = $this->Review->find('list',array('fields'=>array('Review.cover_id','Review.id'),'conditions'=>array('Review.language_id'=>$language)));
-    		//print_r($arr_review);
     		//Debugger::dump($arr_review_code);
     		$this->set('current_language',$language);
     		$this->set('review_codes',$arr_review_code);
     		$this->set('reviews',$arr_review);
 			$this->set('covers', $this->paginate('Cover'));			
+		} else {
+			$this->view = 'index_c';
+			$this->paginate = array(
+    	    	'order' => array('Cover.created'=>'desc'),
+    		);
+    		$this->set('covers', $this->paginate('Cover'));
 		}
 	}
 

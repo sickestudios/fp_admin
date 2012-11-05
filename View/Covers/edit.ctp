@@ -1,28 +1,41 @@
-<div class="covers form">
-<?php echo $this->Form->create('Cover'); ?>
-	<fieldset>
-		<legend><?php echo __('Edit Cover'); ?></legend>
-	<?php
-		echo $this->Form->input('id');
-		echo $this->Form->input('title');
-		echo $this->Form->input('score');
-		echo $this->Form->input('image');
-		echo $this->Form->input('published');
-		echo $this->Form->input('language_id');
-		echo $this->Form->input('Categorytype');
-	?>
-	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('Cover.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('Cover.id'))); ?></li>
-		<li><?php echo $this->Html->link(__('List Covers'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Languages'), array('controller' => 'languages', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Language'), array('controller' => 'languages', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Categorytypes'), array('controller' => 'categorytypes', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Categorytype'), array('controller' => 'categorytypes', 'action' => 'add')); ?> </li>
-	</ul>
+<div class="row">
+		<div class="span9 offset1">
+			
+		</div>
+		<?php echo $this->Form->create('Cover'); ?>
+		<div class="span9 offset1">
+			<fieldset>
+			<legend><?php echo __('Add Cover'); ?></legend>
+		</div>
+		<div class="span9 offset1">
+			<div class="row">
+				<div class="span9"><?php echo $this->Html->image($this->data['Cover']['image'],array('class'=>'img-polaroid')); ?><br><br></div>
+				<div class="span5">
+					<?php echo $this->Form->input('id'); ?>
+					<?php echo $this->Form->input('title',array('class'=>'span5')); ?>
+				</div>							
+				<div class="span1">
+					<?php echo $this->Form->input('score',
+						array(
+							'type' => 'select',
+							'options' => array('--', '1', '2', '3', '4', '5'),
+							'class'=>'span1'
+							)
+						);
+					?>
+				</div>				
+				<div class="span8"><?php echo $this->Form->input('image',array('class'=>'span8')); ?></div>
+				<div class="span8"><?php echo $this->Form->input('language_id',array('class'=>'span8')); ?></div>
+				<div class="span9"><?php echo $this->Form->input('Categorytype',array('type' => 'select', 'multiple' => 'checkbox')); ?></div>
+				<div class="span9">
+					</fieldset>
+					<div class="well">
+						<button type="submit" class="btn btn-primary span8">Submit</button>
+						<?php echo $this->Form->input('published', array('type'=>'hidden','value'=>'1')); ?>
+						<?php echo $this->Form->input('view', array('type'=>'hidden','value'=>'0')); ?>
+						<?php echo $this->Form->end(); ?>
+					</div>				
+				</div>	
+			</div>
+		</div>
 </div>
